@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: mediashaper-alternative
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: DB_PATH
+        value: /var/data/mediashaper.sqlite3
+      - key: WORK_DIR
+        value: /tmp/mediashaper
+      - key: MAX_FILE_MB
+        value: "500"
+      - key: MAX_OUTPUT_MB
+        value: "1900"
+    disk:
+      name: mediashaper-data
+      mountPath: /var/data
+      sizeGB: 1
